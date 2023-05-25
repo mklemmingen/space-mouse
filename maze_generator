@@ -7,7 +7,8 @@
 # these blocks have 6 walls. each wall has a number from one to 6 that is the same at every cube.
 # we clone these cubes. 
 # randomly, these walls receive either the value:
-# 0. non-pass-through 1. pass-through 2. pass-through-once
+# 0. non-pass-through 1. pass-through 
+# to be implemented late stage: 2. pass-through-once
 
 # there is a crater in the top floor of the cube and in the lowest 
 
