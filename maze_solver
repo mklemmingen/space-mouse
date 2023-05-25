@@ -7,4 +7,7 @@
 
 # the mouse has the strong urge to go to the lowest level of the maze, since 1. there is infamous
 # romulan space cheese down there and 2. in its algorithm of searching for the way, it first checks the 
-# southern wall of the cube
+# southern wall of the cube, then it checks the surrounding walls on the horizontal floor, at the end it checks 
+# above. if it cant go up, it is stuck, and ends with output: "Agent Mouse to U.S.S. Muridae, I'm stuck. Reqesting beam up!"
+
+# 
