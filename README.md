@@ -19,6 +19,6 @@ red dot.
 enjoy!
 
 requirements:
-'''python
+
 import rich
-'''
+
