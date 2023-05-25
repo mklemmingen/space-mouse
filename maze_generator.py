@@ -9,7 +9,11 @@
 # randomly, these walls receive either the value:
 # 0. non-pass-through 1. pass-through 2. pass-through-once
 
+# there is a crater in the top floor of the cube and in the lowest 
+
 # the in for the space-mouse is a crater on top of the cube. 
+  # above him should be a inpenetrable barrier, so that the computer cannot go up.
+  # the while loop should stop if none of the craters walls are tested pass-through
 # the out for the space-mouse is a crater at the bottom of the cube. 
 
 # 2 parameters:
