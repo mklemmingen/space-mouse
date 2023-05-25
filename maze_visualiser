@@ -27,4 +27,5 @@
 #   5.1.2 5.2.2 5.3.2 5.4.2 5.5.2
 # 5.1.1 5.2.1 5.3.1 5.4.1 5.5.1
 
-# 
+# the cubes wall being checked currently is orange, if it is checked positive for position-change, it goes green and the mouses position is updated to it.
+# if it is False for position change, it goes system standard again and checks the next one. 
