@@ -23,6 +23,13 @@ def visualise_maze(length_of_side: int, all_cubes: list,
     the second being the row,
     and the third being column
     """
+    # wall positions:
+    # 6: floor
+    # 1: ceiling
+    # 2: forward
+    # 5: behind
+    # 3: west
+    # 4: east
     """
     visualization should look like that:
                     1.1.5 1.2.5 1.3.5 1.4.5 1.5.5
@@ -31,7 +38,7 @@ def visualise_maze(length_of_side: int, all_cubes: list,
         1.1.2 1.2.2 1.3.2 1.4.2 1.5.2
     1.1.1 1.2.1 1.3.1 1.4.1 1.5.1
     
-                    2.1.5 2.3.5 2.3.5 2.4.5 2.5.5
+                    2.1.5 2.2.5 2.3.5 2.4.5 2.5.5
                 2.1.4 2.2.4 2.3.4 2.4.4 2.5.4
             2.1.3 2.2.3 2.3.3 2.4.3 2.5.3
         2.1.2 2.2.2 2.3.2 2.4.2 2.5.2

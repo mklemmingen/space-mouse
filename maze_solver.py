@@ -24,22 +24,10 @@ import maze_generator as mg
 
 console = Console()
 
-console.print("[bold magenta]Welcome to Space Mouse, Officer![/bold magenta]!", justify="center")
-console.print("[bold magenta]Your mission is to find the Romulan Space Cheese![/bold magenta]", justify="center")
-console.print("[bold magenta]You are the first mouse to ever face the borg![/bold magenta]", justify="center")
 
-time.sleep(2)
-
-console.print("You have just got a lock on the upper most floor of the maze.", justify="center")
-console.print("You are about to be beamed in, and you can practically smell the Romulan Space Cheese "
-              "on the lowest floor of the cube.", justify="center")
-console.print("How many cubes form one edge of the big borg mothership?", justify="center")
-side_length= int(input("Please enter a number: "))
-console.print("You are beamed in, and you are standing in the middle of the highest floor of the maze.", justify="center")
 def maze_solver(length: int):
     """
     Function that solves the maze
-    :param maze: dict with maze in it
     :param length: side_length of the maze
     :return:
     """
@@ -74,25 +62,104 @@ def maze_solver(length: int):
         # ".",    3
         # "3"]    4
 
+        # wall positions:
+        # 6: floor
+        # 1: ceiling
+        # 2: forward
+        # 5: behind
+        # 3: west
+        # 4: east
+
         cur_ch_split = re.split('.', current_position)
 
         if current_position not in has_been_in_cube:
             has_been_in_cube.append(current_position)
 
+        # wall below
         current_check = f"{cur_ch_split[0]}+1" + "." + cur_ch_split[2] + "." + cur_ch_split[4]
         mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
-        wall_below_1 = maze[current_position][6]
+        wall_1 = maze[current_position][6]
 
         try:
-            wall_below_2 = maze[f"{int(cur_ch_split[0]) - 1}.{cur_ch_split[2]}.{cur_ch_split[4]}"][1]
+            wall__2 = maze[f"{int(cur_ch_split[0]) - 1}.{cur_ch_split[2]}.{cur_ch_split[4]}"][1]
         except KeyError:
             # if wall not existent, set to True to indicate
             # that the mouse can leave bottom of borg cube and win
-            wall_below_2 = True
+            wall_2 = True
 
-        if wall_below_1 and wall_below_2:
+        if wall_1 and wall_2:
             if current_position == f"{length}.{cur_ch_split[2]}.{cur_ch_split[4]}":
                 has_finished = True
+                succesful = True
                 break
-            current_position = wall_below_2
+            current_position = wall_2
             continue
+
+        # wall to the right
+        current_check = cur_ch_split[0] + "." + f"{cur_ch_split[2] + 1}" + "." + cur_ch_split[4]
+        mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
+        wall_1 = maze[current_position][4]
+        try:
+            wall__2 = maze[f"{cur_ch_split[0]}.{int(cur_ch_split[2]) + 1}.{cur_ch_split[4]}"][3]
+        except KeyError:
+            # if wall not existent, set False to indicate that there is no cube behind the wall
+            wall_2 = True
+        if wall_1 and wall_2:
+            current_position = wall_2
+            continue
+
+        # wall to the left
+        current_check = cur_ch_split[0] + "." + f"{cur_ch_split[2] - 1}" + "." + cur_ch_split[4]
+        mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
+        wall_1 = maze[current_position][3]
+        try:
+            wall__2 = maze[f"{cur_ch_split[0]}.{int(cur_ch_split[2]) - 1}.{cur_ch_split[4]}"][4]
+        except KeyError:
+            # if wall not existent, set False to indicate that there is no cube behind the wall
+            wall_2 = False
+        if wall_1 and wall_2:
+            current_position = wall_2
+            continue
+        time.sleep(0.5)
+
+        # wall in front
+        current_check = cur_ch_split[0] + "." + cur_ch_split[2] + "." + f"{cur_ch_split[4] - 1}"
+        mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
+        wall_1 = maze[current_position][2]
+        try:
+            wall__2 = maze[f"{cur_ch_split[0]}.{int(cur_ch_split[2]) - 1}.{cur_ch_split[4]}"][5]
+        except KeyError:
+            # if wall not existent, set False to indicate that there is no cube behind the wall
+            wall_2 = False
+        if wall_1 and wall_2:
+            current_position = wall_2
+            continue
+        time.sleep(0.5)
+
+        # wall in the back
+        current_check = cur_ch_split[0] + "." + cur_ch_split[2] + "." + f"{cur_ch_split[4] - 1}"
+        mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
+        wall_1 = maze[current_position][5]
+        try:
+            wall__2 = maze[f"{cur_ch_split[0]}.{int(cur_ch_split[2]) - 1}.{cur_ch_split[4]}"][2]
+        except KeyError:
+            # if wall not existent, set False to indicate that there is no cube behind the wall
+            wall_2 = False
+        if wall_1 and wall_2:
+            current_position = wall_2
+            continue
+        time.sleep(0.5)
+
+        # wall above
+        current_check = f"{cur_ch_split[0]-1}" + "." + cur_ch_split[2] + "." + cur_ch_split[4]
+        mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
+        wall_1 = maze[current_position][1]
+        try:
+            wall__2 = maze[f"{int(cur_ch_split[0]) - 1}.{cur_ch_split[2]}.{cur_ch_split[4]}"][6]
+        except KeyError:
+            # if wall not existent, set False to indicate that there is no cube behind the wall
+            wall_2 = False
+        if wall_1 and wall_2:
+            current_position = wall_2
+            continue
+        time.sleep(0.5)
