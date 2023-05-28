@@ -1,3 +1,6 @@
+# Author: Martin Lauterbach
+import random
+
 """
 Script with functions to create a 3-dimensional maze
 
@@ -54,3 +57,38 @@ consistent out of a changeable but quadratic number of blocks.
  what length should the edges have?
 """
 
+
+def maze_creator(length: int):
+    """
+    Dict of name maze with cube names inside that hold 6 keys with the names 1-6 plus a bool value.
+    Gives back a list of all cubes with name too.
+    :param length:
+    :return: A fully created 3-dimensional maze of cubes with 6 walls with bool values and a list of all cubes
+    """
+    maze = {}
+    all_cubes = []
+    # create the maze
+    for floor in range(1, length + 1):
+        for column in range(1, length + 1):
+            for row in range(1, length + 1):
+                # creates the cubes with names like 1.1.1 in a dict
+                maze[f"{floor}.{column}.{row}"] = {1: choose_TF(),
+                                                   2: choose_TF(),
+                                                   3: choose_TF(),
+                                                   4: choose_TF(),
+                                                   5: choose_TF(),
+                                                   6: choose_TF()}
+                # creates a list of all the cubes
+                all_cubes.append(f"{floor}.{column}.{row}")
+    return maze, all_cubes
+
+
+def choose_TF() -> bool:
+    """
+    gives a random bool value
+    :return: bool
+    """
+    return random.choice([True, False])
+
+
+print(maze_creator(5))

@@ -14,3 +14,9 @@ Reqesting beam up!"
 
 
 """
+
+import random
+import time
+from rich.console import Console
+
+console = Console()
