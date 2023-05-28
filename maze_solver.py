@@ -1,22 +1,98 @@
 """
-file that includes the maze_solver
+File that includes the maze_solver
 
-it starts in the middle cube of the highest floor in a crater that consist of nothing [pass-through-walls]
+It starts in the middle cube of the highest floor in a crater that consist of nothing [pass-through-walls]
 
-we measure if the mouse has gone out of the cube if it has reached the lowestlevel -1 and
+We measure if the mouse has gone out of the cube if it has reached the lowestlevel -1 and
 gained the status has_finished that ends the while-loop
 
 the mouse has the strong urge to go to the lowest level of the maze, since 1. there is infamous
 romulan space cheese down there and 2. in its algorithm of searching for the way, it first checks the
 southern wall of the cube, then it checks the surrounding walls on the horizontal floor, at the end it checks
-above. if it cant go up, it is stuck, and ends with output: "Agent Mouse to U.S.S. Muridae, I'm stuck.
-Reqesting beam up!"
+above. If it cant go up, it is stuck, and ends with output: "Agent Mouse to U.S.S. Muridae, I'm stuck.
+Requesting beam up!"
 
 
 """
 
 import random
+import re
 import time
 from rich.console import Console
+import maze_visualiser as mv
+import maze_generator as mg
 
 console = Console()
+
+console.print("[bold magenta]Welcome to Space Mouse, Officer![/bold magenta]!", justify="center")
+console.print("[bold magenta]Your mission is to find the Romulan Space Cheese![/bold magenta]", justify="center")
+console.print("[bold magenta]You are the first mouse to ever face the borg![/bold magenta]", justify="center")
+
+time.sleep(2)
+
+console.print("You have just got a lock on the upper most floor of the maze.", justify="center")
+console.print("You are about to be beamed in, and you can practically smell the Romulan Space Cheese "
+              "on the lowest floor of the cube.", justify="center")
+console.print("How many cubes form one edge of the big borg mothership?", justify="center")
+side_length= int(input("Please enter a number: "))
+console.print("You are beamed in, and you are standing in the middle of the highest floor of the maze.", justify="center")
+def maze_solver(length: int):
+    """
+    Function that solves the maze
+    :param maze: dict with maze in it
+    :param length: side_length of the maze
+    :return:
+    """
+    # first, we need to find the starting point
+    current_position = f"{1}.{length // 2 + 1}.{length // 2 + 1}"
+    # we need to know if the mouse has finished
+    has_finished = False
+    # we need to know if the mouse is stuck
+    is_stuck = False
+    # we need to know if the mouse has been in a cube before
+    has_been_in_cube = []
+    current_check = ""
+
+    # while loop that runs until the mouse has finished
+    while not has_finished:
+        # start of the solving algorithm
+        # checks if the walls of the cube from current_position are pass-through and
+        # if the wall of the cube behind the wall of direction in current_position is pass-through
+        # first checks the floor, then the walls[west, behind, east, forward], then the ceiling
+        # does not check the wall if there is no cube behind it
+        # does not check the ceiling if there is no cube above it
+        # does check the floor if there is no cube below it
+        # has_finished if the mouse has reached the lowest level -1
+
+        maze, all_cubes = mg.maze_creator(length)
+
+        # splits the current position into its five parts
+        # like
+        # ["1",   0
+        # ".",    1
+        # "2",    2
+        # ".",    3
+        # "3"]    4
+
+        cur_ch_split = re.split('.', current_position)
+
+        if current_position not in has_been_in_cube:
+            has_been_in_cube.append(current_position)
+
+        current_check = f"{cur_ch_split[0]}+1" + "." + cur_ch_split[2] + "." + cur_ch_split[4]
+        mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
+        wall_below_1 = maze[current_position][6]
+
+        try:
+            wall_below_2 = maze[f"{int(cur_ch_split[0]) - 1}.{cur_ch_split[2]}.{cur_ch_split[4]}"][1]
+        except KeyError:
+            # if wall not existent, set to True to indicate
+            # that the mouse can leave bottom of borg cube and win
+            wall_below_2 = True
+
+        if wall_below_1 and wall_below_2:
+            if current_position == f"{length}.{cur_ch_split[2]}.{cur_ch_split[4]}":
+                has_finished = True
+                break
+            current_position = wall_below_2
+            continue
