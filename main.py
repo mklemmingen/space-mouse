@@ -26,6 +26,7 @@ while not_good_enough:
 
 console.print("\n*You are beamed in, and you are standing in the middle of the highest floor of the maze.*\n")
 
+# noinspection PyUnboundLocalVariable
 ms.maze_solver(side_length)
 
 
