@@ -69,8 +69,8 @@ def maze_creator(length: int):
     all_cubes = []
     # create the maze
     for floor in range(1, length + 1):
-        for column in range(1, length + 1):
-            for row in range(1, length + 1):
+        for row in range(length, 0, -1):
+            for column in range(1, length + 1):
                 # creates the cubes with names like 1.1.1 in a dict
                 maze[f"{floor}.{column}.{row}"] = {1: choose_TF(),
                                                    2: choose_TF(),

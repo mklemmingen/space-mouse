@@ -76,10 +76,10 @@ def visualise_maze(length_of_side: int, all_cubes: list,
     # clears the console
     console.clear()
     # variables containing styles of specific events
-    mouse = "red"
-    checking = "orange"
-    positive = "green"
-    passed = "blue"
+    mouse = "#f90404"
+    checking = "#f99304"
+    positive = "#56f904"
+    passed = "#04f9f9"
 
     # checks whether the current_check is north, south, east, west before or after the current_position
     # and prints and prints a mouse from text_assets that is facing the right direction
@@ -90,22 +90,22 @@ def visualise_maze(length_of_side: int, all_cubes: list,
 
     # if current_check is same_floor-1.same_row.same_column -> mouse is facing down
     if current_check == f"{str(int(cur_ch_split[0]) - 1)}.{cur_ch_split[2]}.{cur_ch_split[4]}":
-        console.print(text_assets.mouse_down, mouse)
+        console.print(text_assets.mouse_down, style=mouse, highlight=False)
     # if current_check is same_floor.same_row.same_column+1 -> mouse is facing backwards
     elif current_check == f"{cur_ch_split[0]}.{cur_ch_split[2]}.{str(int(cur_ch_split[4]) + 1)}":
-        console.print(text_assets.mouse_backwards, mouse)
+        console.print(text_assets.mouse_backwards, style=mouse, highlight=False)
     # if current_check is same_floor.same_row.same_column-1 -> mouse is facing forwards
     elif current_check == f"{cur_ch_split[0]}.{cur_ch_split[2]}.{str(int(cur_ch_split[4]) - 1)}":
-        console.print(text_assets.mouse_forwards, mouse)
+        console.print(text_assets.mouse_forwards, style=mouse, highlight=False)
     # if current_check is same_floor.same_row+1.same_column -> mouse is facing right
     elif current_check == f"{cur_ch_split[0]}.{str(int(cur_ch_split[2]) + 1)}.{cur_ch_split[4]}":
-        console.print(text_assets.mouse_right, mouse)
+        console.print(text_assets.mouse_right, style=mouse, highlight=False)
     # if current_check is same_floor.same_row-1.same_column -> mouse is facing left
     elif current_check == f"{cur_ch_split[0]}.{str(int(cur_ch_split[2]) - 1)}.{cur_ch_split[4]}":
-        console.print(text_assets.mouse_left, mouse)
+        console.print(text_assets.mouse_left, style=mouse, highlight=False)
     # if current_check is same_floor+1.same_row.same_column -> mouse is facing up
     elif current_check == f"{str(int(cur_ch_split[0]) + 1)}.{cur_ch_split[2]}.{cur_ch_split[4]}":
-        console.print(text_assets.mouse_up, mouse)
+        console.print(text_assets.mouse_up, style=mouse, highlight=False)
 
     # for-loop that goes through a list of all possible names for cubes in the maze.
     # like in the docstring above, each floor is its own block of cubes, with each row being a line of cubes
@@ -114,25 +114,30 @@ def visualise_maze(length_of_side: int, all_cubes: list,
     # if the number is the same as the mouse number, it is coloured red.
     # if the number is the same as the positive number, it is coloured green.
     # if the number is in the list of passed cubes, it is coloured blue.
+    # if cube is the first from left in the last row, it has length_of_side-1 tabs added to it
+
+    space = " "
     for cube in all_cubes:
-        # if cube is the first from left in the last row, it has length_of_side-1 tabs added to it
-        for floor in range(length_of_side, 0, 1):
-            for depth in range(length_of_side, 0, -1):
-                # if cube is the first from the left in a row, adds the number of tabs equal to the row number
-                if cube == f"{floor}.1.{depth}":
-                    tabs = "\t" * (depth - 1)
-                    console.print(tabs, end="")
+        split_cube = list(cube)
+        # if cube is the first from the left in a row, adds the number of tabs equal to the row number
+        if cube == f"{split_cube[0]}.1.{split_cube[4]}":
+            filler = space * (int(split_cube[4]) - 1)
+            console.print(filler, end="")
 
-                if cube == current_check:
-                    console.print(cube, style=checking, end=" ")
-                elif cube == current_position:
-                    console.print(cube, style=mouse, end=" ")
-                elif cube == positive:
-                    console.print(cube, style=positive, end=" ")
-                elif cube in passed_cubes:
-                    console.print(cube, style=passed, end=" ")
-                else:
-                    console.print(cube, end=" ")
+        if cube == current_check:
+            console.print(cube, style=checking, end=" ", highlight=False)
+        elif cube == current_position:
+            console.print(cube, style=mouse, end=" ", highlight=False)
+        elif cube == positive:
+            console.print(cube, style=positive, end=" ", highlight=False)
+        elif cube in passed_cubes:
+            console.print(cube, style=passed, end=" ", highlight=False)
+        else:
+            console.print(cube, end=" ", highlight=False)
 
-                if cube == f"{floor}.5.{depth}":
-                    console.print("\n", end="")
+        if cube == f"{split_cube[0]}.{length_of_side}.{split_cube[4]}":
+            console.print("\n", end="")
+        if cube == f"{split_cube[0]}.{length_of_side}.1":
+            console.print("\n", end="")
+
+    return
