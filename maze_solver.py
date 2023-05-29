@@ -16,6 +16,8 @@ Requesting beam up!"
 """
 
 import time
+import random
+
 from rich.console import Console
 import maze_visualiser as mv
 import maze_generator as mg
@@ -106,9 +108,9 @@ def maze_solver(length: int):
                 except KeyError:
                     # if wall not existent, set False to indicate that there is no cube behind the wall
                     wall_2 = False
-                if wall_1 and wall_2:
-                    current_position = wall_2_non_bool
-                    continue
+            if wall_1 and wall_2:
+                current_position = wall_2_non_bool
+                continue
             time.sleep(0.2)
 
         # wall in front
@@ -125,9 +127,9 @@ def maze_solver(length: int):
                 except KeyError:
                     # if wall not existent, set False to indicate that there is no cube behind the wall
                     wall_2 = False
-                if wall_1 and wall_2:
-                    current_position = wall_2_non_bool
-                    continue
+            if wall_1 and wall_2:
+                current_position = wall_2_non_bool
+                continue
             time.sleep(0.2)
 
         # wall to the left
@@ -144,9 +146,9 @@ def maze_solver(length: int):
                 except KeyError:
                     # if wall not existent, set False to indicate that there is no cube behind the wall
                     wall_2 = False
-                if wall_1 and wall_2:
-                    current_position = wall_2_non_bool
-                    continue
+            if wall_1 and wall_2:
+                current_position = wall_2_non_bool
+                continue
             time.sleep(0.2)
 
         # wall in the back
@@ -163,30 +165,12 @@ def maze_solver(length: int):
                 except KeyError:
                     # if wall not existent, set False to indicate that there is no cube behind the wall
                     wall_2 = False
-                if wall_1 and wall_2:
-                    current_position = wall_2_non_bool
-                    continue
-            time.sleep(0.2)
-
-        # wall above
-        current_check = f"{str(int(cur_ch_split[0]) - 1)}.{cur_ch_split[2]}.{cur_ch_split[4]}"
-        if current_check not in has_been_in_cube:
-            mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
-            wall_1 = maze[current_position][1]
-
-            if int(cur_ch_split[0]) == 1:
-                wall_2 = False
-            else:
-                try:
-                    wall_2_non_bool = f"{str(int(cur_ch_split[0]) - 1)}.{cur_ch_split[2]}.{cur_ch_split[4]}"
-                    wall_2 = maze[f"{str(int(cur_ch_split[0]) - 1)}.{cur_ch_split[2]}.{cur_ch_split[4]}"][6]
-                except KeyError:
-                    # if wall not existent, set False to indicate that there is no cube behind the wall
-                    wall_2 = False
             if wall_1 and wall_2:
                 current_position = wall_2_non_bool
                 continue
             time.sleep(0.2)
+
+        # start of second cycle without if current_check not in has_been_in_cube
 
         # wall above
         current_check = f"{str(int(cur_ch_split[0]) - 1)}.{cur_ch_split[2]}.{cur_ch_split[4]}"
@@ -220,45 +204,9 @@ def maze_solver(length: int):
             except KeyError:
                 # if wall not existent, set False to indicate that there is no cube behind the wall
                 wall_2 = False
-            if wall_1 and wall_2:
-                current_position = wall_2_non_bool
-                continue
-        time.sleep(0.2)
-
-        # wall in front
-        current_check = cur_ch_split[0] + "." + cur_ch_split[2] + "." + f"{str(int(cur_ch_split[4]) - 1)}"
-        mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
-        wall_1 = maze[current_position][2]
-        if int(cur_ch_split[4]) == 1:
-            wall_2 = False
-        else:
-            try:
-                wall_2_non_bool = f"{cur_ch_split[0]}.{cur_ch_split[2]}.{str(int(cur_ch_split[4]) - 1)}"
-                wall_2 = maze[f"{cur_ch_split[0]}.{cur_ch_split[2]}.{str(int(cur_ch_split[4]) - 1)}"][5]
-            except KeyError:
-                # if wall not existent, set False to indicate that there is no cube behind the wall
-                wall_2 = False
-            if wall_1 and wall_2:
-                current_position = wall_2_non_bool
-                continue
-        time.sleep(0.2)
-
-        # wall to the right
-        current_check = cur_ch_split[0] + "." + f"{str(int(cur_ch_split[2]) + 1)}" + "." + cur_ch_split[4]
-        mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
-        wall_1 = maze[current_position][3]
-        if int(cur_ch_split[4]) == length:
-            wall_2 = False
-        else:
-            try:
-                wall_2_non_bool = f"{cur_ch_split[0]}.{str(int(cur_ch_split[2]) + 1)}.{cur_ch_split[4]}"
-                wall_2 = maze[f"{cur_ch_split[0]}.{str(int(cur_ch_split[2]) + 1)}.{cur_ch_split[4]}"][4]
-            except KeyError:
-                # if wall not existent, set False to indicate that there is no cube behind the wall
-                wall_2 = False
-            if wall_1 and wall_2:
-                current_position = wall_2_non_bool
-                continue
+        if wall_1 and wall_2:
+            current_position = wall_2_non_bool
+            continue
         time.sleep(0.2)
 
         # wall in the back
@@ -274,10 +222,160 @@ def maze_solver(length: int):
             except KeyError:
                 # if wall not existent, set False to indicate that there is no cube behind the wall
                 wall_2 = False
-            if wall_1 and wall_2:
-                current_position = wall_2_non_bool
-                continue
+        if wall_1 and wall_2:
+            current_position = wall_2_non_bool
+            continue
         time.sleep(0.2)
+
+        # wall to the right
+        current_check = cur_ch_split[0] + "." + f"{str(int(cur_ch_split[2]) + 1)}" + "." + cur_ch_split[4]
+        mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
+        wall_1 = maze[current_position][3]
+        if int(cur_ch_split[4]) == length:
+            wall_2 = False
+        else:
+            try:
+                wall_2_non_bool = f"{cur_ch_split[0]}.{str(int(cur_ch_split[2]) + 1)}.{cur_ch_split[4]}"
+                wall_2 = maze[f"{cur_ch_split[0]}.{str(int(cur_ch_split[2]) + 1)}.{cur_ch_split[4]}"][4]
+            except KeyError:
+                # if wall not existent, set False to indicate that there is no cube behind the wall
+                wall_2 = False
+        if wall_1 and wall_2:
+            current_position = wall_2_non_bool
+            continue
+        time.sleep(0.2)
+
+        # wall in front
+        current_check = cur_ch_split[0] + "." + cur_ch_split[2] + "." + f"{str(int(cur_ch_split[4]) - 1)}"
+        mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
+        wall_1 = maze[current_position][2]
+        if int(cur_ch_split[4]) == 1:
+            wall_2 = False
+        else:
+            try:
+                wall_2_non_bool = f"{cur_ch_split[0]}.{cur_ch_split[2]}.{str(int(cur_ch_split[4]) - 1)}"
+                wall_2 = maze[f"{cur_ch_split[0]}.{cur_ch_split[2]}.{str(int(cur_ch_split[4]) - 1)}"][5]
+            except KeyError:
+                # if wall not existent, set False to indicate that there is no cube behind the wall
+                wall_2 = False
+        if wall_1 and wall_2:
+            current_position = wall_2_non_bool
+            continue
+        time.sleep(0.2)
+
+        # wall below
+        current_check = f"{str(int(cur_ch_split[0]) + 1)}.{cur_ch_split[2]}.{cur_ch_split[4]}"
+        mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
+
+        wall_1 = maze[current_position][6]
+        wall_2_non_bool = f"{str(int(cur_ch_split[0]) + 1)}.{cur_ch_split[2]}.{cur_ch_split[4]}"
+        wall_2 = maze[f"{str(int(cur_ch_split[0]) + 1)}.{cur_ch_split[2]}.{cur_ch_split[4]}"][1]
+        time.sleep(0.2)
+
+        if wall_1 and wall_2:
+            if wall_2_non_bool == f"{length}.{cur_ch_split[2]}.{cur_ch_split[4]}":
+                succesful = True
+                break
+            current_position = wall_2_non_bool
+            continue
+        time.sleep(0.2)
+
+        """
+        uses for loop of 5 to generate a random number between 1 and 5 and then
+        checks if the wall is there, if not, chooses another number
+        for number in range(5):
+            numbers = [1, 2, 3, 4, 5]
+            random_number = random.choice(numbers)
+            if random_number == 1:
+                # wall to the left
+                current_check = cur_ch_split[0] + "." + f"{str(int(cur_ch_split[2]) - 1)}" + "." + cur_ch_split[4]
+                mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
+                wall_1 = maze[current_position][4]
+                if int(cur_ch_split[2]) == 1:
+                    wall_2 = False
+                else:
+                    try:
+                        wall_2_non_bool = f"{cur_ch_split[0]}.{str(int(cur_ch_split[2]) - 1)}.{cur_ch_split[4]}"
+                        wall_2 = maze[f"{cur_ch_split[0]}.{str(int(cur_ch_split[2]) - 1)}.{cur_ch_split[4]}"][3]
+                    except KeyError:
+                        # if wall not existent, set False to indicate that there is no cube behind the wall
+                        wall_2 = False
+                if wall_1 and wall_2:
+                    current_position = wall_2_non_bool
+                    continue
+                time.sleep(0.2)
+            elif random_number == 2:
+                # wall in the back
+                current_check = cur_ch_split[0] + "." + cur_ch_split[2] + "." + f"{str(int(cur_ch_split[4]) + 1)}"
+                mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
+                wall_1 = maze[current_position][5]
+                if int(cur_ch_split[4]) == length:
+                    wall_2 = False
+                else:
+                    try:
+                        wall_2_non_bool = f"{cur_ch_split[0]}.{cur_ch_split[2]}.{str(int(cur_ch_split[4]) + 1)}"
+                        wall_2 = maze[f"{cur_ch_split[0]}.{cur_ch_split[2]}.{str(int(cur_ch_split[4]) + 1)}"][2]
+                    except KeyError:
+                        # if wall not existent, set False to indicate that there is no cube behind the wall
+                        wall_2 = False
+                if wall_1 and wall_2:
+                    current_position = wall_2_non_bool
+                    continue
+                time.sleep(0.2)
+            elif random_number == 3:
+                # wall to the right
+                current_check = cur_ch_split[0] + "." + f"{str(int(cur_ch_split[2]) + 1)}" + "." + cur_ch_split[4]
+                mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
+                wall_1 = maze[current_position][3]
+                if int(cur_ch_split[4]) == length:
+                    wall_2 = False
+                else:
+                    try:
+                        wall_2_non_bool = f"{cur_ch_split[0]}.{str(int(cur_ch_split[2]) + 1)}.{cur_ch_split[4]}"
+                        wall_2 = maze[f"{cur_ch_split[0]}.{str(int(cur_ch_split[2]) + 1)}.{cur_ch_split[4]}"][4]
+                    except KeyError:
+                        # if wall not existent, set False to indicate that there is no cube behind the wall
+                        wall_2 = False
+                if wall_1 and wall_2:
+                    current_position = wall_2_non_bool
+                    continue
+                time.sleep(0.2)
+            elif random_number == 4:
+                # wall in front
+                current_check = cur_ch_split[0] + "." + cur_ch_split[2] + "." + f"{str(int(cur_ch_split[4]) - 1)}"
+                mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
+                wall_1 = maze[current_position][2]
+                if int(cur_ch_split[4]) == 1:
+                    wall_2 = False
+                else:
+                    try:
+                        wall_2_non_bool = f"{cur_ch_split[0]}.{cur_ch_split[2]}.{str(int(cur_ch_split[4]) - 1)}"
+                        wall_2 = maze[f"{cur_ch_split[0]}.{cur_ch_split[2]}.{str(int(cur_ch_split[4]) - 1)}"][5]
+                    except KeyError:
+                        # if wall not existent, set False to indicate that there is no cube behind the wall
+                        wall_2 = False
+                if wall_1 and wall_2:
+                    current_position = wall_2_non_bool
+                    continue
+                time.sleep(0.2)
+            elif random_number == 5:
+                # wall below
+                current_check = f"{str(int(cur_ch_split[0]) + 1)}.{cur_ch_split[2]}.{cur_ch_split[4]}"
+                mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
+
+                wall_1 = maze[current_position][6]
+                wall_2_non_bool = f"{str(int(cur_ch_split[0]) + 1)}.{cur_ch_split[2]}.{cur_ch_split[4]}"
+                wall_2 = maze[f"{str(int(cur_ch_split[0]) + 1)}.{cur_ch_split[2]}.{cur_ch_split[4]}"][1]
+                time.sleep(0.2)
+
+                if wall_1 and wall_2:
+                    if wall_2_non_bool == f"{length}.{cur_ch_split[2]}.{cur_ch_split[4]}":
+                        succesful = True
+                        break
+                    current_position = wall_2_non_bool
+                    continue
+                time.sleep(0.2)
+            """
 
     if succesful:
         console.print(text_assets.mouse_art_win, highlight=False)
