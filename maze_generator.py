@@ -89,6 +89,3 @@ def choose_TF() -> bool:
     :return: bool
     """
     return random.choice([True, False])
-
-
-print(maze_creator(5))

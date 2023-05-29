@@ -1,23 +1,23 @@
-mouse_pointing_east = (
+mouse_right = (
     """
                   (`o.
                   /U=
                __(_)_
-              (_
-                ) sjw
+              (_ sjw
+              
     """
 )
-mouse_pointing_west = (
+mouse_left = (
     """
                 (\/)
                  \/\
                  /__)
                    (_ BP
+                   
     """
 )
-mouse_pointing_forward = (
-    """    
-                 ,        
+mouse_forwards = (
+    """          
                 (_         
                 _ )_    
                (    )     apx
@@ -25,7 +25,7 @@ mouse_pointing_forward = (
                 =\/=     
     """
 )
-mouse_pointing_backwards = (
+mouse_backwards = (
     """
               q-p
              /   \
@@ -34,7 +34,7 @@ mouse_pointing_backwards = (
                 ) hjw
     """
 )
-mouse_pointing_upwards = (
+mouse_up = (
     """
               q-p
              /   \
@@ -43,9 +43,8 @@ mouse_pointing_upwards = (
                 ) hjw
     """
 )
-mouse_pointing_downwards = (
-    """    
-             ,        
+mouse_down = (
+    """           
             (_         
             _ )_    
            (    )     apx

@@ -1,5 +1,4 @@
 # Authors: Martin Lauterbach
-import re
 
 from rich.console import Console
 # imports assets from the python code text.assets
@@ -87,25 +86,25 @@ def visualise_maze(length_of_side: int, all_cubes: list,
 
     # splits the current position into its five parts
     # like ["1",".","2",".","3"]
-    cur_ch_split = re.split('.', current_position)
+    cur_ch_split = list(current_position)
 
     # if current_check is same_floor-1.same_row.same_column -> mouse is facing down
-    if current_check == cur_ch_split([0]-1, [1], [2], [3], [4], [5]):
+    if current_check == f"{str(int(cur_ch_split[0]) - 1)}.{cur_ch_split[2]}.{cur_ch_split[4]}":
         console.print(text_assets.mouse_down, mouse)
     # if current_check is same_floor.same_row.same_column+1 -> mouse is facing backwards
-    elif current_check == cur_ch_split([0], [1], [2], [3], [4], [5] + 1):
+    elif current_check == f"{cur_ch_split[0]}.{cur_ch_split[2]}.{str(int(cur_ch_split[4]) + 1)}":
         console.print(text_assets.mouse_backwards, mouse)
     # if current_check is same_floor.same_row.same_column-1 -> mouse is facing forwards
-    elif current_check == cur_ch_split([0], [1], [2], [3], [4], [5] - 1):
+    elif current_check == f"{cur_ch_split[0]}.{cur_ch_split[2]}.{str(int(cur_ch_split[4]) - 1)}":
         console.print(text_assets.mouse_forwards, mouse)
     # if current_check is same_floor.same_row+1.same_column -> mouse is facing right
-    elif current_check == cur_ch_split([0], [1], [2], [3] + 1, [4], [5]):
+    elif current_check == f"{cur_ch_split[0]}.{str(int(cur_ch_split[2]) + 1)}.{cur_ch_split[4]}":
         console.print(text_assets.mouse_right, mouse)
     # if current_check is same_floor.same_row-1.same_column -> mouse is facing left
-    elif current_check == cur_ch_split([0], [1], [2], [3] - 1, [4], [5]):
+    elif current_check == f"{cur_ch_split[0]}.{str(int(cur_ch_split[2]) - 1)}.{cur_ch_split[4]}":
         console.print(text_assets.mouse_left, mouse)
     # if current_check is same_floor+1.same_row.same_column -> mouse is facing up
-    elif current_check == cur_ch_split([0]+1, [1], [2], [3], [4], [5]):
+    elif current_check == f"{str(int(cur_ch_split[0]) + 1)}.{cur_ch_split[2]}.{cur_ch_split[4]}":
         console.print(text_assets.mouse_up, mouse)
 
     # for-loop that goes through a list of all possible names for cubes in the maze.
@@ -121,7 +120,7 @@ def visualise_maze(length_of_side: int, all_cubes: list,
             for depth in range(length_of_side, 0, -1):
                 # if cube is the first from the left in a row, adds the number of tabs equal to the row number
                 if cube == f"{floor}.1.{depth}":
-                    tabs = "\t" * (depth -1)
+                    tabs = "\t" * (depth - 1)
                     console.print(tabs, end="")
 
                 if cube == current_check:
