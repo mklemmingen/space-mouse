@@ -31,10 +31,14 @@ The sum of cubes are determined by the parameter of edge_length of the big cube.
 - Solver:
 does basically two and a half runs:
 1. if the cube we want to be in has not been in before, we check: 1.below 2.right 3.forward 4.left 5.back
-1.5: if the current position was the current position before the one before, it performs a random check.
-2. if the cube has been in, we check: 6.above 4.left 5.backwards 3.right 3.forward 1.below
+
+2.5: if the current position was the current position before the one before, it performs a random check.
+
+3. if the cube has been in, we check: 6.above 4.left 5.backwards 3.right 3.forward 1.below
+
 if the corresponding walls of both the cube the mouse is in and the one she would like to be in are True (open), she moves there and checks again with the same cycle.
-We use the inverted cycle to not create a cycle.
+
+We use the inverted cycle between 1 and 3 to not create a cycle.
 ------------
 the mouse wins if she has reached the lowest floor. 
 
