@@ -1,25 +1,25 @@
 mouse_right = (
     """
-                  (`o.  
-                  /U=   
-               __(_)_   
-              (_ sjw     \n
+              (`o.  
+              /U=   
+           __(_)_   
+           (_ sjw     \n
     """
 )
 mouse_left = (
     """
-                (\/)     
-                 \/\     
-                 /__)     
-                   (_ BP     \n        
+            (\/)     
+             \/\     
+             /__)     
+              (_ BP     \n        
     """
 )
 mouse_forwards = (
-    """                    
-                _ )_      
-               (    )     apx  
-               "-oo-"     
-                =\/=     \n
+    """                  
+            _ )_     
+           (    )     apx  
+           "-oo-"    
+            =\/=     \n
     """
 )
 mouse_backwards = (
@@ -49,8 +49,8 @@ mouse_down = (
 
 mouse_art_win = (
     '''
-                          _   _      Space-Operodent to Bridge
-                         (q\_/p)     Package secured, requesting beam up 
+                          _   Space-Operodent to Bridge
+                         (q\_/p)   Package secured, requesting beam up 
                           /. .\ 
                    ,__   =\_t_/=      .'o O'-.
                       )   /   \      / O o_.-`|
@@ -62,9 +62,9 @@ mouse_art_win = (
                 ''')
 mouse_art_lose = (
     '''
-                            _   _      Space-Operodent to Bridge                
-                            (q\_/p)     I'm stuck, borgs are surrounding me,
-                             /. .\         __requesting beam up
+                            _   _  Space-Operodent to Bridge                
+                            (q\_/p)  I'm stuck, borgs are surrounding me,
+                             /. .\  requesting beam up
                             =\_t_/= 
                          )   /   \  
                         (   ((   ))  
