@@ -50,13 +50,13 @@ mouse_down = (
 mouse_art_win = (
     '''
                           _   _      Space-Operodent to Bridge
-                         (q\_/p)     Package secured, requesting beam up  
-                          /. .\         __      
+                         (q\_/p)     Package secured, requesting beam up 
+                          /. .\ 
                    ,__   =\_t_/=      .'o O'-.
-                      )   /   \      / O o_.-`|   _   _
+                      )   /   \      / O o_.-`|
                      (   ((   ))    /O_.-'  O |  
-                      \  /\) (/\    | o   o  o|  
-                 jgs   `-\  Y  /    |o   o O.-`  
+                      \  /\) (/\    | o   o  o|
+                 jgs   `-\  Y  /    |o   o O.-`
                           nn^nn     | O _.-'      
                                     '--`          
                 ''')
@@ -65,10 +65,10 @@ mouse_art_lose = (
                             _   _      Space-Operodent to Bridge                
                             (q\_/p)     I'm stuck, borgs are surrounding me,
                              /. .\         __requesting beam up
-                            =\_t_/=      
-                         )   /   \       _
+                            =\_t_/= 
+                         )   /   \  
                         (   ((   ))  
-                         \  /\) (/\   
-                     jgs `-\  Y  /    
+                         \  /\) (/\ 
+                     jgs `-\  Y  / 
                             nn^nn    
     ''')
