@@ -27,3 +27,17 @@ while not_good_enough:
 console.print("\n*You are beamed in, and you are standing in the middle of the highest floor of the maze.*\n")
 
 ms.maze_solver(side_length)
+
+
+# ask user if they want to play again
+play_again = console.input("Do you want to play again? (y/n)")
+if play_again == "y":
+    console.print("Restart not available yet. Please restart the program manually.")
+    time.sleep(1)
+    console.clear()
+    exit()
+else:
+    console.print("Goodbye!")
+    time.sleep(1)
+    console.clear()
+    exit()
