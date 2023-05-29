@@ -30,9 +30,10 @@ maze in dict form, with a dict inside for each cube, that holds 6 keys with a bo
 The sum of cubes are determined by the parameter of edge_length of the big cube.
 - Solver:
 does basically two runs:
-1. if the cube we want to be in has not been in before, we check: 1. below 2. right 3. forward 4. left 5. backwards
-2. if the cube has been in, we check: 1. left 2. forward 3. right 4. backwards
+1. if the cube we want to be in has not been in before, we check: 1.below 2.right 3.forward 4.left 5.back
+2. if the cube has been in, we check: 6.above 4.left 5.backwards 3.right 3.forward 1.below
 if the corresponding walls of both the cube the mouse is in and the one she would like to be in are True (open), she moves there and checks again with the same cycle.
+We use the inverted cycle to not create a cycle.
 ------------
 the mouse wins if she has reached the lowest floor. 
 
