@@ -23,22 +23,37 @@ requirements:
 import rich
 
 ------------
+
 at the beginning of this project I had never seen either a generator for mazes or a solving algorithm before,
 so I challenged myself to make one without looking any up:
+
 - Generator:
+ 
 maze in dict form, with a dict inside for each cube, that holds 6 keys with a bool value each.
 The sum of cubes are determined by the parameter of edge_length of the big cube.
+
+
 - Solver:
-does basically two and a half runs:
+
+does basically two runs:
+
 1. if the cube we want to be in has not been in before, we check: 1.below 2.right 3.forward 4.left 5.back
 
-2.5: if the current position was the current position before the one before, it performs a random check.
-
-3. if the cube has been in, we check: 6.above 4.left 5.backwards 3.right 3.forward 1.below
+2. if the cube has been in, we check: 6.above 4.left 5.backwards 3.right 3.forward 1.below
 
 if the corresponding walls of both the cube the mouse is in and the one she would like to be in are True (open), she moves there and checks again with the same cycle.
 
 We use the inverted cycle between 1 and 3 to not create a cycle.
-------------
-the mouse wins if she has reached the lowest floor. 
+
+The mouse wins if she has reached the lowest floor. 
+
+Th mouse wants to beam up if it is stuck.
+
+TODO: add pathfinding to cubes with unchecked wales if mouse seems stuck. 
+- record the data for each cubes walls (checked / unchecked)
+- go to latest cube with unchecked wall
+- check unchecked till stuck
+- rince repeat till no unchecked walls
+
+
 
