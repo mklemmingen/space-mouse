@@ -60,8 +60,7 @@ def visualise_maze(length_of_side: int, all_cubes: list,
             5.1.3 5.2.3 5.3.3 5.4.3 5.5.3
         5.1.2 5.2.2 5.3.2 5.4.2 5.5.2
     5.1.1 5.2.1 5.3.1 5.4.1 5.5.1
-    """
-    """
+    
     the cubes' wall being checked currently is orange, 
     if it is checked positive for the wall being passable and
     the wall behind it being passable too, it turns green and the mouse position is updated to it.

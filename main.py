@@ -51,7 +51,7 @@ time.sleep(1)
 # noinspection PyUnboundLocalVariable
 ms.maze_solver(side_length)
 
-# ask user if they want to play again
+# ask user if they want to play again - in TODO
 play_again = input("Do you want to play again? (y/n)")
 if play_again == "y":
     typewriter("Restart not available yet. Please restart the program manually.", "default", False)

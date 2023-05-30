@@ -80,8 +80,10 @@ def maze_solver(length: int):
         # Abbruchbedingung
         try:
             if current_position == has_been_in_cube[0]:
+
                 break
             elif current_position == has_been_in_cube[2] and has_been_in_cube[4]:
+
                 break
             else:
                 pass
