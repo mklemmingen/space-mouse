@@ -88,4 +88,4 @@ def choose_TF() -> bool:
     gives a random bool value
     :return: bool
     """
-    return bool(random.choice([True, True, True, False, False]))
+    return bool(random.choice([True, False]))

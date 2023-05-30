@@ -80,9 +80,11 @@ def maze_solver(length: int):
         # Abbruchbedingung
         try:
             if current_position == has_been_in_cube[0]:
-                current_check = "0.0.0"
-                mv.visualise_maze(length, all_cubes, current_check, current_position, has_been_in_cube)
                 break
+            elif current_position == has_been_in_cube[2] and has_been_in_cube[4]:
+                break
+            else:
+                pass
         except IndexError:
             pass
 

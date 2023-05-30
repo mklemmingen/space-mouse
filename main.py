@@ -38,13 +38,15 @@ typewriter("Can you tell me how many cubes form one edge of the big borg mothers
 not_good_enough = True
 while not_good_enough:
     side_length = int(input("Please enter a number: "))
-    if side_length < 2 or side_length % 2 == 0:
+    if side_length < 2 or side_length % 2 == 0 or side_length >= 10:
         typewriter("That is not a valid number. Please enter a number greater than 1 and uneven.", "default", False)
     else:
         not_good_enough = False
 
-typewriter("\n*You are beamed in, and you are standing in the middle of the highest floor of the maze.*\n",
+typewriter("\n*You are beamed in, and you are standing in the middle \nof the highest floor of the maze.*\n",
            "default", False)
+
+time.sleep(1)
 
 # noinspection PyUnboundLocalVariable
 ms.maze_solver(side_length)
