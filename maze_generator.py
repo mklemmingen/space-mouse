@@ -47,7 +47,6 @@ consistent out of a changeable but quadratic number of blocks.
  to be implemented late stage: 2. pass-through-once
 
  There is a crater in the top floor of the cube and in the lowest
-
  The in for the space-mouse is a crater on top of the cube.
    Above him should be an impenetrable barrier, so that the computer cannot go up.
    The while loop should stop if none of the craters' walls are tested pass-through

@@ -11,9 +11,6 @@ def typewriter(text, style: str, highlight: bool):
     This will print all the elements of the string one by one at a certain rate of an element per second.
     It uses a rich console print statement with typewriter().
 
-    modified FORK from pywriter, licence MIT, rights to: Jesse Amarquaye, package: pywrite
-    https://github.com/amarquaye/pywriter/blob/master/pywriter/__init__.py
-
     :param text: The data you would like to print
     :param style: style parameters, see rich documentation
     :param highlight: Bool Value if it should be auto-highlighted

@@ -1,5 +1,4 @@
 # ascii art of the mice
-
 mouse_right = (
     """
               (`o.  

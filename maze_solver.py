@@ -66,7 +66,6 @@ def maze_solver(length: int):
         # "2",    2
         # ".",    3
         # "3"]    4
-
         # wall positions:
         # 6: floor
         # 1: ceiling
