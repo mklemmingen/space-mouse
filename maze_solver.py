@@ -66,6 +66,7 @@ def maze_solver(length: int):
         # "2",    2
         # ".",    3
         # "3"]    4
+
         # wall positions:
         # 6: floor
         # 1: ceiling
@@ -79,10 +80,8 @@ def maze_solver(length: int):
         # Abbruchbedingung
         try:
             if current_position == has_been_in_cube[0]:
-
                 break
             elif current_position == has_been_in_cube[2] and has_been_in_cube[4]:
-
                 break
             else:
                 pass
